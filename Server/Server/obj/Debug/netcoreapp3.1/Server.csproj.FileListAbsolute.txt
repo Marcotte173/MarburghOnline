@@ -1,0 +1,39 @@
+C:\Users\Marcotte\source\repos\Server\Server\bin\Debug\netcoreapp3.1\Server.exe
+C:\Users\Marcotte\source\repos\Server\Server\bin\Debug\netcoreapp3.1\Server.deps.json
+C:\Users\Marcotte\source\repos\Server\Server\bin\Debug\netcoreapp3.1\Server.runtimeconfig.json
+C:\Users\Marcotte\source\repos\Server\Server\bin\Debug\netcoreapp3.1\Server.runtimeconfig.dev.json
+C:\Users\Marcotte\source\repos\Server\Server\bin\Debug\netcoreapp3.1\Server.dll
+C:\Users\Marcotte\source\repos\Server\Server\bin\Debug\netcoreapp3.1\Server.pdb
+C:\Users\Marcotte\source\repos\Server\Server\obj\Debug\netcoreapp3.1\Server.AssemblyInfoInputs.cache
+C:\Users\Marcotte\source\repos\Server\Server\obj\Debug\netcoreapp3.1\Server.AssemblyInfo.cs
+C:\Users\Marcotte\source\repos\Server\Server\obj\Debug\netcoreapp3.1\Server.csproj.CoreCompileInputs.cache
+C:\Users\Marcotte\source\repos\Server\Server\obj\Debug\netcoreapp3.1\Server.dll
+C:\Users\Marcotte\source\repos\Server\Server\obj\Debug\netcoreapp3.1\Server.pdb
+C:\Users\Marcotte\source\repos\Server\Server\obj\Debug\netcoreapp3.1\Server.genruntimeconfig.cache
+C:\Users\Marcotte\source\repos\Server\Server\obj\Debug\netcoreapp3.1\Server.csprojAssemblyReference.cache
+C:\Users\travi\Desktop\Multiplayer-master\Server\Server\bin\Debug\netcoreapp3.1\Server.exe
+C:\Users\travi\Desktop\Multiplayer-master\Server\Server\bin\Debug\netcoreapp3.1\Server.deps.json
+C:\Users\travi\Desktop\Multiplayer-master\Server\Server\bin\Debug\netcoreapp3.1\Server.runtimeconfig.json
+C:\Users\travi\Desktop\Multiplayer-master\Server\Server\bin\Debug\netcoreapp3.1\Server.runtimeconfig.dev.json
+C:\Users\travi\Desktop\Multiplayer-master\Server\Server\bin\Debug\netcoreapp3.1\Server.dll
+C:\Users\travi\Desktop\Multiplayer-master\Server\Server\bin\Debug\netcoreapp3.1\Server.pdb
+C:\Users\travi\Desktop\Multiplayer-master\Server\Server\obj\Debug\netcoreapp3.1\Server.csprojAssemblyReference.cache
+C:\Users\travi\Desktop\Multiplayer-master\Server\Server\obj\Debug\netcoreapp3.1\Server.AssemblyInfoInputs.cache
+C:\Users\travi\Desktop\Multiplayer-master\Server\Server\obj\Debug\netcoreapp3.1\Server.AssemblyInfo.cs
+C:\Users\travi\Desktop\Multiplayer-master\Server\Server\obj\Debug\netcoreapp3.1\Server.csproj.CoreCompileInputs.cache
+C:\Users\travi\Desktop\Multiplayer-master\Server\Server\obj\Debug\netcoreapp3.1\Server.dll
+C:\Users\travi\Desktop\Multiplayer-master\Server\Server\obj\Debug\netcoreapp3.1\Server.pdb
+C:\Users\travi\Desktop\Multiplayer-master\Server\Server\obj\Debug\netcoreapp3.1\Server.genruntimeconfig.cache
+C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\bin\Debug\netcoreapp3.1\Server.exe
+C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\bin\Debug\netcoreapp3.1\Server.deps.json
+C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\bin\Debug\netcoreapp3.1\Server.runtimeconfig.json
+C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\bin\Debug\netcoreapp3.1\Server.runtimeconfig.dev.json
+C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\bin\Debug\netcoreapp3.1\Server.dll
+C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\bin\Debug\netcoreapp3.1\Server.pdb
+C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\obj\Debug\netcoreapp3.1\Server.csprojAssemblyReference.cache
+C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\obj\Debug\netcoreapp3.1\Server.AssemblyInfoInputs.cache
+C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\obj\Debug\netcoreapp3.1\Server.AssemblyInfo.cs
+C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\obj\Debug\netcoreapp3.1\Server.csproj.CoreCompileInputs.cache
+C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\obj\Debug\netcoreapp3.1\Server.dll
+C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\obj\Debug\netcoreapp3.1\Server.pdb
+C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\obj\Debug\netcoreapp3.1\Server.genruntimeconfig.cache
