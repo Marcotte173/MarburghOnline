@@ -26,7 +26,8 @@ public class Data
                 Player.p.goldInBank       + "," +
                 Player.p.house       + "," +
                 Player.p.location + "," +
-                Player.p.password
+                Player.p.password + "," +
+                Player.p.drinks
                 );
         if (File.Exists("Master.txt"))
         {
@@ -73,6 +74,7 @@ public class Data
             Player.p.house = (info[14] == "true") ? true : false;
             Player.p.location = (info[15] == "Tavern")?Location.Tavern: (info[15] == "House")?Location.House:Location.Town;
             Player.p.password = info[16];
+            Player.p.drinks = Int32.Parse(info[17]); 
             Write.Line("Please enter your password");
             Utilities.LongInput();
             if (Utilities.input == Player.p.password)

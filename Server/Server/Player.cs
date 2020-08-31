@@ -8,6 +8,7 @@ public class Player:Creature
     public int fights;
     public int points;
     public bool house;
+    public int drinks;
     public string password;
     public Location location;
     public Equipment weapon;
@@ -27,6 +28,7 @@ public class Player:Creature
         experience = 0;
         level = 1;
         points = 2;
+        drinks = 3;
         weapon = Equipment.weaponList[0].Copy();
         armor = Equipment.armorList[0].Copy();
     }

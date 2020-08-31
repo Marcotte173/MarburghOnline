@@ -1,1 +1,0 @@
-Bill,1,0,4,4,3,20,20,15,0,Fist,None,100,0,False,Town,poopoo

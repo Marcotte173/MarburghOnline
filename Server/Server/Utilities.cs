@@ -20,7 +20,16 @@ public class Utilities
         sw.Flush();
         Listen();
     }
-
+    internal static void Sleep()
+    {
+        sw.WriteLine("uSleep");
+        sw.Flush();
+    }
+    internal static void DotDotDot()
+    {
+        sw.WriteLine("...");
+        sw.Flush();
+    }
     internal static void JumpY(int v)
     {
         sw.WriteLine("y"+v.ToString());
@@ -57,6 +66,7 @@ public class Utilities
             {
                 Console.WriteLine("Something went wrong.");
                 Utilities.sw.WriteLine(e.ToString());
+                ServerSocketApp.Program.listener.Stop();
                 ServerSocketApp.Program.Start();
             }
         }

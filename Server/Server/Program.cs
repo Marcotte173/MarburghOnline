@@ -10,8 +10,8 @@ namespace ServerSocketApp
 {
     public class Program
     {
-        public static TcpListener listener = new TcpListener(IPAddress.Parse("192.168.0.19"), port);
-        static string ip = "192.168.0.19";
+        public static TcpListener listener = new TcpListener(IPAddress.Parse("192.168.0.14"), port);
+        static string ip = "192.168.0.14";
         static int port = 1302;
         static void Main(string[] args)
         {
@@ -40,31 +40,31 @@ namespace ServerSocketApp
                 listener = new TcpListener(IPAddress.Parse(ip), port);
                 LaunchGame();
             }
-            if (choice == "2")
+            else if (choice == "2")
             {
                 port = 1303;
                 listener = new TcpListener(IPAddress.Parse(ip), port);
                 LaunchGame();
             }
-            if (choice == "3")
+            else if (choice == "3")
             {
                 port = 1304;
                 listener = new TcpListener(IPAddress.Parse(ip), port);
                 LaunchGame();
             }
-            if (choice == "4")
+            else if (choice == "4")
             {
                 port = 1305;
                 listener = new TcpListener(IPAddress.Parse(ip), port);
                 LaunchGame();
             }
-            if (choice == "5")
+            else if (choice == "5")
             {
                 port = 1306;
                 listener = new TcpListener(IPAddress.Parse(ip), port);
                 LaunchGame();
             }
-            if (choice == "6")
+            else if (choice == "6")
             {
                 Console.Clear();
                 Console.WriteLine("Please enter the new IP");
@@ -100,7 +100,7 @@ namespace ServerSocketApp
                 Console.ReadKey(true);
                 File.WriteAllText("Master.txt", "");
             }
-            else Start();
+            Start();
         }
 
         private static void Maintenance()
@@ -114,12 +114,11 @@ namespace ServerSocketApp
             Console.WriteLine("Ready for connections");
             Console.WriteLine("IP - " + ip);
             Console.WriteLine("Port - " + port);
-
             FindClient();
         }
 
         public static void FindClient()
-        {
+        {            
             listener.Start();
             Utilities.client = listener.AcceptTcpClient();
             Utilities.stream = Utilities.client.GetStream();

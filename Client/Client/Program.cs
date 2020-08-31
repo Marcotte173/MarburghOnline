@@ -4,6 +4,7 @@ using System.Text;
 using System.IO;
 using System.Dynamic;
 using System.Data;
+using System.Threading;
 
 namespace ClientSocketApp
 {
@@ -12,7 +13,7 @@ namespace ClientSocketApp
         static TcpClient client;
         static NetworkStream stream;        
         static StreamReader sr;
-        static string ip = "192.168.0.19";
+        static string ip = "192.168.0.14";
         static int port = 1302;
 
         static void Main(string[] args)
@@ -37,27 +38,12 @@ namespace ClientSocketApp
             Console.WriteLine("[6] Change IP");
             Console.WriteLine("[0] Quit Program");
             string choice = Console.ReadKey(true).KeyChar.ToString().ToLower();
-            if (choice == "1")
-            {
-                port = 1302;
-            }
-            if (choice == "2")
-            {
-                port = 1303;
-            }
-            if (choice == "3")
-            {
-                port = 1304;
-            }
-            if (choice == "4")
-            {
-                port = 1305;
-            }
-            if (choice == "5")
-            {
-                port = 1306;
-            }
-            if (choice == "6")
+            if (choice == "1") port = 1302;
+            if (choice == "2") port = 1303;
+            if (choice == "3") port = 1304;
+            if (choice == "4") port = 1305;
+            if (choice == "5") port = 1306;
+            if (choice == "6") 
             {
                 Console.Clear();
                 Console.WriteLine("Please enter the new IP");
@@ -95,6 +81,8 @@ namespace ClientSocketApp
                 else if (response == "cBoss") Console.Write(Color.BOSS);
                 else if (response == "cAbility") Console.Write(Color.ABILITY);
                 else if (response == "cMitigation") Console.Write(Color.MITIGATION);
+                else if (response == "uSleep") Thread.Sleep(600);
+                else if (response == "...") Utilities.DotDotDot();
                 else if (response == "y1") Console.CursorTop = 1;
                 else if (response == "y2") Console.CursorTop = 2;
                 else if (response == "y3") Console.CursorTop = 3;

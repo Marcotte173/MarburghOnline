@@ -37,3 +37,16 @@ C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\obj\Debug\netcoreapp3.1\
 C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\obj\Debug\netcoreapp3.1\Server.dll
 C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\obj\Debug\netcoreapp3.1\Server.pdb
 C:\Users\Marcotte\Desktop\Marburgh Online\Server\Server\obj\Debug\netcoreapp3.1\Server.genruntimeconfig.cache
+C:\MarburghOnline\Server\Server\bin\Debug\netcoreapp3.1\Server.exe
+C:\MarburghOnline\Server\Server\bin\Debug\netcoreapp3.1\Server.deps.json
+C:\MarburghOnline\Server\Server\bin\Debug\netcoreapp3.1\Server.runtimeconfig.json
+C:\MarburghOnline\Server\Server\bin\Debug\netcoreapp3.1\Server.runtimeconfig.dev.json
+C:\MarburghOnline\Server\Server\bin\Debug\netcoreapp3.1\Server.dll
+C:\MarburghOnline\Server\Server\bin\Debug\netcoreapp3.1\Server.pdb
+C:\MarburghOnline\Server\Server\obj\Debug\netcoreapp3.1\Server.csprojAssemblyReference.cache
+C:\MarburghOnline\Server\Server\obj\Debug\netcoreapp3.1\Server.AssemblyInfoInputs.cache
+C:\MarburghOnline\Server\Server\obj\Debug\netcoreapp3.1\Server.AssemblyInfo.cs
+C:\MarburghOnline\Server\Server\obj\Debug\netcoreapp3.1\Server.csproj.CoreCompileInputs.cache
+C:\MarburghOnline\Server\Server\obj\Debug\netcoreapp3.1\Server.dll
+C:\MarburghOnline\Server\Server\obj\Debug\netcoreapp3.1\Server.pdb
+C:\MarburghOnline\Server\Server\obj\Debug\netcoreapp3.1\Server.genruntimeconfig.cache
