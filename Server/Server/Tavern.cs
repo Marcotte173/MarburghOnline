@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-<<<<<<< HEAD
 using System.Net.NetworkInformation;
-=======
 using System.Security.Cryptography.X509Certificates;
->>>>>>> 7e36894111e33199fe30ad7db59eed8a7dd1d360
 using System.Text;
 
 public class Tavern
@@ -25,7 +22,7 @@ public class Tavern
         if (Utilities.input == "1")
         {
             if (Utilities.CanAfford(100))
-            {                
+            {
                 Write.Line("Billiam looks you over");
                 Write.Line("A room, eh? No problem, I have one available");
                 Write.Line("That will be 100 gold");
@@ -50,7 +47,7 @@ public class Tavern
         }
         else if (Utilities.input == "2")
         {
-            if(Player.p.drinks <= 0) Write.Line("'I think you've had enough sir. Come back tomorrow");
+            if (Player.p.drinks <= 0) Write.Line("'I think you've had enough sir. Come back tomorrow");
             else
             {
                 if (Utilities.CanAfford(70))
@@ -74,7 +71,7 @@ public class Tavern
                         Utilities.NewLine(3);
                         int roll = Utilities.RandomInt(1, 21);
                         if (roll > 1 && roll < 6 && Player.p.fights < 4) roll = 1;
-                        Write.Line((roll == 1) ? "Awful!" : (roll > 1 && roll < 6) ? "Nauseous!" : (roll < 5 && roll < 9) ? "Sick!" : (roll > 12 && roll < 16) ? "Pretty Good!" : (roll > 15 && roll <20) ? "Great!" :(roll ==20)?"Amazing!":"Fine");
+                        Write.Line((roll == 1) ? "Awful!" : (roll > 1 && roll < 6) ? "Nauseous!" : (roll < 5 && roll < 9) ? "Sick!" : (roll > 12 && roll < 16) ? "Pretty Good!" : (roll > 15 && roll < 20) ? "Great!" : (roll == 20) ? "Amazing!" : "Fine");
                         Utilities.Keypress();
                         Utilities.Clear();
                         if (roll == 1)
@@ -89,9 +86,9 @@ public class Tavern
                         {
                             Write.Line("That did not sit well....");
                             Write.Line("You feel terrible. You need to rest a bit before leaving");
-                            Write.Line("LOSE 3 FIGHTS");                            
+                            Write.Line("LOSE 3 FIGHTS");
                             Player.p.fights -= 3;
-                            
+
                         }
                         if (roll > 5 && roll < 9)
                         {
@@ -117,13 +114,13 @@ public class Tavern
                                 Utilities.Keypress();
                                 Utilities.Logout();
                             }
-                            
+
                         }
                         if (roll > 8 && roll < 13)
                         {
                             Write.Line("That was pretty alright");
                             Write.Line("In fact, you're pretty sure you have room for another");
-                            Player.p.drinks ++;
+                            Player.p.drinks++;
                         }
                         if (roll > 12 && roll < 16)
                         {
@@ -148,6 +145,7 @@ public class Tavern
                             if (x == 0) Player.p.AddStrength();
                             else if (x == 1) Player.p.AddAgility();
                             else Player.p.AddStamina();
+                            Player.p.drinks = 0;
                         }
                     }
                     else Go();
@@ -156,8 +154,6 @@ public class Tavern
             }
             Utilities.Keypress();
             Go();
-<<<<<<< HEAD
-=======
         }
         else if (Utilities.input == "3")
         {
@@ -185,7 +181,7 @@ public class Tavern
             if (roll == 1)
             {
                 Write.Line("You tell Roderick how awful his music is, things get heated.");
-                Write.Line("By the time the shouting match is over, you have been asked to leave the tavern. You can enter again tomorrow");
+                Write.Line("By the time the shouting match is over, you have been asked to leave the tavern. You can enter again tomorrow.");
                 Player.p.tavernBan = true;
                 Utilities.Keypress();
                 Town.Go();
@@ -198,16 +194,20 @@ public class Tavern
             {
 
             }
-            else if(roll == 20)
+            else if (roll == 20)
             {
-
+                Write.Line("You wipe the tears away from your eyes.");
+                Write.Line("You let Roderick know that that is the most beautiful song you've ever heard.");
+                Player.p.tavernBan = true;
+                Utilities.Keypress();
+                Town.Go();
             }
             else
             {
 
             }
-
->>>>>>> 7e36894111e33199fe30ad7db59eed8a7dd1d360
         }
+        else if (Utilities.input == "0") Town.Go();
+        else Go();
     }
 }
