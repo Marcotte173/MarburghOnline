@@ -144,6 +144,7 @@ namespace ServerSocketApp
 
         static void NewGame()
         {
+            Player.p = new Player("");
             Name();
             Stats();
             Town.Go();
