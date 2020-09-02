@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.Net.NetworkInformation;
+=======
+using System.Security.Cryptography.X509Certificates;
+>>>>>>> 7e36894111e33199fe30ad7db59eed8a7dd1d360
 using System.Text;
 
 public class Tavern
@@ -152,6 +156,58 @@ public class Tavern
             }
             Utilities.Keypress();
             Go();
+<<<<<<< HEAD
+=======
+        }
+        else if (Utilities.input == "3")
+        {
+
+        }
+        else if (Utilities.input == "4")
+        {
+            Write.Line("You grab a seat near Roderick");
+            Write.Line("Roderick begins to sing");
+            Utilities.Sleep();
+            Write.Line("'Hark to the tale of Billiam, and the boy he loved so dear'");
+            Utilities.Sleep();
+            Write.Line("'They became the best of freinds for years and years and years.'");
+            Utilities.Sleep();
+            Utilities.NewLine(3);
+            Write.Line("You consider how much, if at all, this song has touched your heart");
+            Utilities.Sleep();
+            Write.SameLine("You feel");
+            Utilities.DotDotDot();
+            Utilities.NewLine(3);
+            int roll = Utilities.RandomInt(1, 21);
+            Write.Line((roll == 1) ? "Disgusted!" : (roll > 1 && roll < 6) ? "Put off" : (roll < 15 && roll < 20) ? "Happy" : (roll == 20) ? "Elate!" : "Not much of anything, honestly");
+            Utilities.Keypress();
+            Utilities.Clear();
+            if (roll == 1)
+            {
+                Write.Line("You tell Roderick how awful his music is, things get heated.");
+                Write.Line("By the time the shouting match is over, you have been asked to leave the tavern. You can enter again tomorrow");
+                Player.p.tavernBan = true;
+                Utilities.Keypress();
+                Town.Go();
+            }
+            else if (roll > 1 && roll < 6)
+            {
+
+            }
+            else if (roll < 15 && roll < 20)
+            {
+
+            }
+            else if(roll == 20)
+            {
+
+            }
+            else
+            {
+
+            }
+
+>>>>>>> 7e36894111e33199fe30ad7db59eed8a7dd1d360
         }
     }
 }

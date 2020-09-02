@@ -27,11 +27,13 @@ public class Data
                 Player.p.house       + "," +
                 Player.p.location + "," +
                 Player.p.password + "," +
-                Player.p.drinks
+                Player.p.drinks + "," +
+                Player.p.songs + "," +
+                Player.p.tavernBan
                 );
-        if (File.Exists("Master.txt"))
+        if (File.Exists("Players.txt"))
         {
-            string rawInfo = File.ReadAllText("Master.txt");
+            string rawInfo = File.ReadAllText("Players.txt");
             string[] info = rawInfo.Split(",");
             bool notThere = true;
             foreach(string s in info)
@@ -42,9 +44,9 @@ public class Data
                     break;
                 }
             }
-            if(notThere) File.AppendAllText("Master.txt", Player.p.name + ",");
+            if(notThere) File.AppendAllText("Players.txt", Player.p.name + ",");
         }
-        else File.AppendAllText("Master.txt", Player.p.name + ",");
+        else File.AppendAllText("Players.txt", Player.p.name + ",");
     }
 
     public static void Load()
@@ -74,7 +76,9 @@ public class Data
             Player.p.house = (info[14] == "true") ? true : false;
             Player.p.location = (info[15] == "Tavern")?Location.Tavern: (info[15] == "House")?Location.House:Location.Town;
             Player.p.password = info[16];
-            Player.p.drinks = Int32.Parse(info[17]); 
+            Player.p.drinks = Int32.Parse(info[17]);
+            Player.p.songs = Int32.Parse(info[18]);
+            Player.p.tavernBan = (info[19] =="true") ? true : false; 
             Write.Line("Please enter your password");
             Utilities.LongInput();
             if (Utilities.input == Player.p.password)

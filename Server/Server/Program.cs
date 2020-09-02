@@ -13,6 +13,7 @@ namespace ServerSocketApp
         public static TcpListener listener = new TcpListener(IPAddress.Parse("192.168.0.14"), port);
         static string ip = "192.168.0.14";
         static int port = 1302;
+        static string world;
         static void Main(string[] args)
         {
             Start();
@@ -22,9 +23,18 @@ namespace ServerSocketApp
             Console.Clear();
             Console.WriteLine("Marburgh Multiplayer 0.1 - Server");
             Console.WriteLine("IP adress - " + ip);
+            if (File.Exists("World.txt"))
+            {
+                string rawInfo = File.ReadAllText("World.txt");
+                string[] info = rawInfo.Split(",");
+                Console.SetCursorPosition(100, 27);
+                Console.WriteLine("World: " + world);
+            }
+            Console.SetCursorPosition(100, 27);
+            Console.WriteLine("[!] Create World");
             Console.SetCursorPosition(100, 28);
-            Console.WriteLine("[*] Reset Server");
-            Console.SetCursorPosition(0, 21);
+            Console.WriteLine("[*] Reset World");
+            Console.SetCursorPosition(0, 21);            
             Console.WriteLine("[1] Start game - 1302");
             Console.WriteLine("[2] Start game - 1303");
             Console.WriteLine("[3] Start game - 1304");
@@ -90,7 +100,7 @@ namespace ServerSocketApp
             string choice = Console.ReadKey(true).KeyChar.ToString().ToLower();
             if (choice == "1")
             {
-                string rawInfo = File.ReadAllText("Master.txt");
+                string rawInfo = File.ReadAllText("Players.txt");
                 string[] info = rawInfo.Split(",");
                 foreach (string s in info) File.Delete(s + ".txt");
                 Console.Clear();                

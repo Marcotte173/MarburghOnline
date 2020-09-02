@@ -9,7 +9,12 @@ public class Player:Creature
     public int points;
     public bool house;
     public int drinks;
+<<<<<<< HEAD
     public bool active;
+=======
+    public int songs;
+    public bool tavernBan;
+>>>>>>> 7e36894111e33199fe30ad7db59eed8a7dd1d360
     public string password;
     public Location location;
     public Equipment weapon;
@@ -18,6 +23,7 @@ public class Player:Creature
     public Player(string name)
     : base()
     {
+        songs = 2;
         this.name = name;
         gold = 1000;
         goldInBank = 0;

@@ -1,0 +1,1 @@
+Marcotte,1,0,4,4,3,20,20,15,0,Fist,None,0,0,False,Tavern,popepope,3
