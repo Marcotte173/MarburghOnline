@@ -15,7 +15,8 @@ public class Town
         Write.Line("[1] Enter the dungeon");
         Write.Line("[2] Weapon Shop");
         Write.Line("[3] Armor Shop");
-        Write.Line("[4] Tavern");
+        if(Player.p.tavernBan) Write.Line(Color.MITIGATION, "[X] ", "You've been banned. Come back tomorrow", "");
+        else Write.Line("[4] Tavern");
         Write.Line("[5] Bank");
         Write.Line(Color.MITIGATION, "[X] ","You don't have a house","");
         Write.Line("[7] Level Master");
@@ -26,7 +27,7 @@ public class Town
         if (Utilities.input == "1") Write.Line("Not Implemented yet");
         else if (Utilities.input == "2") weaponShop.Store();
         else if (Utilities.input == "3") armorShop.Store();
-        else if (Utilities.input == "4") Tavern.Go();
+        else if (Utilities.input == "4" && Player.p.tavernBan == false) Tavern.Go();
         else if (Utilities.input == "5") Write.Line("Not Implemented yet");
         else if (Utilities.input == "6") Write.Line("Not Implemented yet");
         else if (Utilities.input == "6") Write.Line("Not Implemented yet");
