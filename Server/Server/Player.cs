@@ -12,7 +12,6 @@ public class Player:Creature
     public bool active;
     public int songs;
     public bool tavernBan;
-    public int daySaved;
     public string password;
     public Location location;
     public Equipment weapon;
@@ -23,9 +22,9 @@ public class Player:Creature
     {
         songs = 2;
         this.name = name;
-        gold = 1000;
+        gold = World.startingGold;
         goldInBank = 0;
-        fights = 15;
+        fights = World.fights;
         hp = maxHp = 20;
         strength = 3;
         agility = 3;
@@ -33,7 +32,8 @@ public class Player:Creature
         experience = 0;
         level = 1;
         points = 2;
-        drinks = 3;
+        drinks = World.drinks;
+        songs = World.songs;
         weapon = Equipment.weaponList[0].Copy();
         armor = Equipment.armorList[0].Copy();
     }

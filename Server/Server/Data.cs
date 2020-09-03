@@ -29,8 +29,7 @@ public class Data
                 Player.p.password + "," +
                 Player.p.drinks + "," +
                 Player.p.songs + "," +
-                Player.p.tavernBan + "," +
-                Player.p.daySaved
+                Player.p.tavernBan
                 );
         if (File.Exists("Players.txt"))
         {
@@ -74,13 +73,12 @@ public class Data
             foreach (Equipment e in Equipment.armorList) if (e.name == info[11]) Player.p.armor = e.Copy();
             Player.p.gold = Int32.Parse(info[12]);
             Player.p.goldInBank = Int32.Parse(info[13]);
-            Player.p.house = (info[14] == "true") ? true : false;
+            Player.p.house = (info[14] == "True") ? true : false;
             Player.p.location = (info[15] == "Tavern")?Location.Tavern: (info[15] == "House")?Location.House:Location.Town;
             Player.p.password = info[16];
             Player.p.drinks = Int32.Parse(info[17]);
             Player.p.songs = Int32.Parse(info[18]);
-            Player.p.tavernBan = (info[19] =="true") ? true : false; 
-            Player.p.daySaved = Int32.Parse(info[20]);
+            Player.p.tavernBan = (info[19] =="True") ? true : false; 
             Write.Line("Please enter your password");
             Utilities.LongInput();
             if (Utilities.input == Player.p.password)

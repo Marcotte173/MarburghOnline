@@ -10,11 +10,11 @@
         "projectUniqueName": "C:\\MarburghOnline\\Client\\Client\\Client.csproj",
         "projectName": "Client",
         "projectPath": "C:\\MarburghOnline\\Client\\Client\\Client.csproj",
-        "packagesPath": "C:\\Users\\travi\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\Marcotte\\.nuget\\packages\\",
         "outputPath": "C:\\MarburghOnline\\Client\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\travi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Marcotte\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -52,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

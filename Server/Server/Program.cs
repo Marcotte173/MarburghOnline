@@ -13,9 +13,21 @@ namespace ServerSocketApp
         public static TcpListener listener = new TcpListener(IPAddress.Parse("192.168.0.14"), port);
         static string ip = "192.168.0.14";
         static int port = 1302;
-        static string world;
         static void Main(string[] args)
         {
+            if (File.Exists("World.txt"))
+            {
+                string rawInfo = File.ReadAllText("World.txt");
+                string[] info = rawInfo.Split(",");
+                World.day = Int32.Parse(info[0]);
+                World.name = info[1];
+                World.fights = Int32.Parse(info[2]);
+                World.townActions = Int32.Parse(info[3]);
+                World.songs = Int32.Parse(info[4]);
+                World.drinks = Int32.Parse(info[5]);
+                World.startingGold = Int32.Parse(info[6]);
+                World.bankGold = Int32.Parse(info[7]);
+            }
             Start();
         }
         public static void Start()
@@ -23,52 +35,60 @@ namespace ServerSocketApp
             Console.Clear();
             Console.WriteLine("Marburgh Multiplayer 0.1 - Server");
             Console.WriteLine("IP adress - " + ip);
-            if (File.Exists("World.txt"))
-            {
-                string rawInfo = File.ReadAllText("World.txt");
-                string[] info = rawInfo.Split(",");
-                Console.SetCursorPosition(100, 27);
-                Console.WriteLine("World: " + world);
-            }
+            Console.SetCursorPosition(100, 0);
+            if (File.Exists("World.txt")) Console.WriteLine("World: " + World.name);
+            else Console.WriteLine("World: None");
             Console.SetCursorPosition(100, 27);
             Console.WriteLine("[!] Create World");
             Console.SetCursorPosition(100, 28);
             Console.WriteLine("[*] Reset World");
-            Console.SetCursorPosition(0, 21);            
-            Console.WriteLine("[1] Start game - 1302");
-            Console.WriteLine("[2] Start game - 1303");
-            Console.WriteLine("[3] Start game - 1304");
-            Console.WriteLine("[4] Start game - 1305");
-            Console.WriteLine("[5] Start game - 1306");
+            Console.SetCursorPosition(0, 21);
+            if (File.Exists("World.txt"))
+            {
+                Console.WriteLine("[1] Start game - 1302");
+                Console.WriteLine("[2] Start game - 1303");
+                Console.WriteLine("[3] Start game - 1304");
+                Console.WriteLine("[4] Start game - 1305");
+                Console.WriteLine("[5] Start game - 1306");
+            }
+            else
+            {
+                Console.WriteLine("[X] No World Exists");
+                Console.WriteLine("[X] No World Exists");
+                Console.WriteLine("[X] No World Exists");
+                Console.WriteLine("[X] No World Exists");
+                Console.WriteLine("[X] No World Exists");
+            }
             Console.WriteLine("[6] Change IP");
-            Console.WriteLine("[9] Run Maintenance");
+            if (File.Exists("World.txt")) Console.WriteLine("[9] Run Maintenance");
+            else Console.WriteLine("[X] No World Exists");
             Console.WriteLine("[0] Quit Program");
             string choice = Console.ReadKey(true).KeyChar.ToString().ToLower();
-            if (choice == "1")
+            if (choice == "1" && File.Exists("World.txt"))
             {
                 port = 1302;
                 listener = new TcpListener(IPAddress.Parse(ip), port);
                 LaunchGame();
             }
-            else if (choice == "2")
+            else if (choice == "2" && File.Exists("World.txt"))
             {
                 port = 1303;
                 listener = new TcpListener(IPAddress.Parse(ip), port);
                 LaunchGame();
             }
-            else if (choice == "3")
+            else if (choice == "3" && File.Exists("World.txt"))
             {
                 port = 1304;
                 listener = new TcpListener(IPAddress.Parse(ip), port);
                 LaunchGame();
             }
-            else if (choice == "4")
+            else if (choice == "4" && File.Exists("World.txt"))
             {
                 port = 1305;
                 listener = new TcpListener(IPAddress.Parse(ip), port);
                 LaunchGame();
             }
-            else if (choice == "5")
+            else if (choice == "5" && File.Exists("World.txt"))
             {
                 port = 1306;
                 listener = new TcpListener(IPAddress.Parse(ip), port);
@@ -82,7 +102,8 @@ namespace ServerSocketApp
                 ip = newIP;
                 Start();
             }
-            else if (choice == "9") Maintenance();
+            else if (choice == "9" && File.Exists("World.txt")) Maintenance();
+            else if (choice == "!") World.Create();
             else if (choice == "*") CatastropheReset();
             else if (choice == "0") Environment.Exit(0);
             else Start();
@@ -100,22 +121,75 @@ namespace ServerSocketApp
             string choice = Console.ReadKey(true).KeyChar.ToString().ToLower();
             if (choice == "1")
             {
-                string rawInfo = File.ReadAllText("Players.txt");
-                string[] info = rawInfo.Split(",");
-                foreach (string s in info) File.Delete(s + ".txt");
+                File.Delete("Players.txt");
+                File.Delete("World.txt");
                 Console.Clear();                
                 Console.WriteLine("All data has been erased");
                 Console.CursorTop = 28;
                 Console.WriteLine("Press any key to continue");
                 Console.ReadKey(true);
-                File.WriteAllText("Master.txt", "");
             }
             Start();
         }
 
         private static void Maintenance()
         {
-            
+            World.day++;
+            string rawInfo = File.ReadAllText("Players.txt");
+            string[] info = rawInfo.Split(",");
+            foreach(string s in info)
+            {
+                if(s != "")
+                {
+                    string rawInfo1 = File.ReadAllText(s + ".txt");
+                    string[] info1 = rawInfo1.Split(",");
+                    Player.p.name = info1[0];
+                    Player.p.level = Int32.Parse(info1[1]);
+                    Player.p.experience = Int32.Parse(info1[2]);
+                    Player.p.strength = Int32.Parse(info1[3]);
+                    Player.p.agility = Int32.Parse(info1[4]);
+                    Player.p.stamina = Int32.Parse(info1[5]);
+                    Player.p.hp = Int32.Parse(info1[6]);
+                    Player.p.maxHp = Int32.Parse(info1[7]);
+                    Player.p.fights = Int32.Parse(info1[8]);
+                    Player.p.points = Int32.Parse(info1[9]);
+                    foreach (Equipment e in Equipment.weaponList) if (e.name == info1[10]) Player.p.weapon = e.Copy();
+                    foreach (Equipment e in Equipment.armorList) if (e.name == info1[11]) Player.p.armor = e.Copy();
+                    Player.p.gold = Int32.Parse(info1[12]);
+                    Player.p.goldInBank = Int32.Parse(info1[13]);
+                    Player.p.house = (info1[14] == "true") ? true : false;
+                    Player.p.location = (info1[15] == "Tavern") ? Location.Tavern : (info1[15] == "House") ? Location.House : Location.Town;
+                    Player.p.password = info1[16];
+                    Player.p.drinks = Int32.Parse(info1[17]);
+                    Player.p.songs = Int32.Parse(info1[18]);
+                    Player.p.tavernBan = (info1[19] == "true") ? true : false;
+                    File.WriteAllText
+                   (
+                    s + ".txt",
+                    Player.p.name + "," +
+                    Player.p.level + "," +
+                    Player.p.experience + "," +
+                    Player.p.strength + "," +
+                    Player.p.agility + "," +
+                    Player.p.stamina + "," +
+                    Player.p.hp + "," +
+                    Player.p.maxHp + "," +
+                    World.fights + "," +
+                    Player.p.points + "," +
+                    Player.p.weapon.name + "," +
+                    Player.p.armor.name + "," +
+                    Player.p.gold + "," +
+                    Player.p.goldInBank + "," +
+                    Player.p.house + "," +
+                    Player.p.location + "," +
+                    Player.p.password + "," +
+                    World.drinks + "," +
+                    World.songs + "," +
+                    "False"
+                    );
+                }                
+            }
+            Start();
         }
 
         public static void LaunchGame()
@@ -214,7 +288,7 @@ namespace ServerSocketApp
             Utilities.InputColor(Color.NAME);
             Utilities.LongInput();
             Utilities.InputColor(Color.RESET);
-            string rawInfo = File.ReadAllText("Master.txt");
+            string rawInfo = File.ReadAllText("Players.txt");
             string[] info = rawInfo.Split(",");
             bool notThere = true;
             foreach (string s in info)
