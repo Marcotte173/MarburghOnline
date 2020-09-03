@@ -12,6 +12,7 @@ public class Player:Creature
     public bool active;
     public int songs;
     public bool tavernBan;
+    public int townActions;
     public string password;
     public Location location;
     public Equipment weapon;
@@ -21,6 +22,7 @@ public class Player:Creature
     : base()
     {
         songs = 2;
+        townActions = World.townActions;
         this.name = name;
         gold = World.startingGold;
         goldInBank = 0;

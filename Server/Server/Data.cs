@@ -29,7 +29,8 @@ public class Data
                 Player.p.password + "," +
                 Player.p.drinks + "," +
                 Player.p.songs + "," +
-                Player.p.tavernBan
+                Player.p.tavernBan + "," +
+                Player.p.townActions
                 );
         if (File.Exists("Players.txt"))
         {
@@ -78,7 +79,8 @@ public class Data
             Player.p.password = info[16];
             Player.p.drinks = Int32.Parse(info[17]);
             Player.p.songs = Int32.Parse(info[18]);
-            Player.p.tavernBan = (info[19] =="True") ? true : false; 
+            Player.p.tavernBan = (info[19] =="True") ? true : false;
+            Player.p.townActions = Int32.Parse(info[20]);
             Write.Line("Please enter your password");
             Utilities.LongInput();
             if (Utilities.input == Player.p.password)

@@ -1,1 +1,0 @@
-kjkj,1,0,4,4,3,20,20,15,0,Fist,None,1234,0,False,Town,kjkjkj,3,2,True

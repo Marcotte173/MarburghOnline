@@ -28,17 +28,17 @@ public class Town
         else if (Utilities.input == "2") weaponShop.Store();
         else if (Utilities.input == "3") armorShop.Store();
         else if (Utilities.input == "4" && Player.p.tavernBan == false) Tavern.Go();
-        else if (Utilities.input == "5") Write.Line("Not Implemented yet");
+        else if (Utilities.input == "5") Bank.Go();
         else if (Utilities.input == "6") Write.Line("Not Implemented yet");
-        else if (Utilities.input == "6") Write.Line("Not Implemented yet");
-        else if (Utilities.input == "9") Write.Line("Not Implemented yet");
+        else if (Utilities.input == "7") Level.Go();
+        else if (Utilities.input == "9") Character.Display();
         else if (Utilities.input == "0")
         {
             Utilities.Clear();
             Write.Line("Are you sure you want to log out here? You will not be safe");
             Utilities.YesNo();
             Utilities.Input();
-            if(Utilities.input == "1")
+            if (Utilities.input == "1")
             {
                 Player.p.location = Location.Town;
                 Data.Save();

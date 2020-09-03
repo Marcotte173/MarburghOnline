@@ -39,6 +39,7 @@ public class World
             Console.WriteLine("[5] Songs: " + songs);
             Console.WriteLine("[6] Starting Gold: " + startingGold);
             Console.WriteLine("[7] Bank Gold: " + bankGold);
+            Console.WriteLine("[8] Add to the song");
             Console.WriteLine("[9] Create World");
             string choice = Console.ReadKey(true).KeyChar.ToString().ToLower();
             if (choice == "1")
@@ -114,6 +115,13 @@ public class World
                 } while (!int.TryParse(Console.ReadLine(), out number));
                 bankGold = number;
             }
+            else if (choice == "8")
+            {
+                Console.Clear();
+                Console.WriteLine("What should the next line be?");
+                string song = Console.ReadLine();
+                roderick.Add(song);
+            }
             else if (choice == "9")
             {
                 Console.Clear();
@@ -121,19 +129,25 @@ public class World
                 Console.CursorTop = 28;
                 Console.WriteLine("Press any key to continue");
                 Console.ReadKey(true);
-                File.AppendAllText("Players.txt","");                
-                File.AppendAllText("World.txt", day + ",");
-                File.AppendAllText("World.txt", name + ",");
-                File.AppendAllText("World.txt", fights + ",");
-                File.AppendAllText("World.txt", townActions + ",");
-                File.AppendAllText("World.txt", songs + ",");
-                File.AppendAllText("World.txt", drinks + ",");
-                File.AppendAllText("World.txt", startingGold + ",");
-                File.AppendAllText("World.txt", bankGold + ",");
+                Save();
                 ServerSocketApp.Program.Start();
             }
             else if (Utilities.input == "0") ServerSocketApp.Program.Start();
             Create();
         }        
-    }    
+    }
+
+    public static void Save()
+    {
+        File.AppendAllText("Players.txt", "");
+        File.AppendAllText("World.txt", day + ",");
+        File.AppendAllText("World.txt", name + ",");
+        File.AppendAllText("World.txt", fights + ",");
+        File.AppendAllText("World.txt", townActions + ",");
+        File.AppendAllText("World.txt", songs + ",");
+        File.AppendAllText("World.txt", drinks + ",");
+        File.AppendAllText("World.txt", startingGold + ",");
+        File.AppendAllText("World.txt", bankGold + ",");
+        if (roderick.Count !=0) foreach(string s in roderick) File.AppendAllText("World.txt", s + ",");
+    }
 }

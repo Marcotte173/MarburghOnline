@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
-using System.Text;
 using System.IO;
-using System.Threading;
 using System.Net;
-using System.Security.Cryptography;
 
 namespace ServerSocketApp
 {
@@ -27,6 +24,7 @@ namespace ServerSocketApp
                 World.drinks = Int32.Parse(info[5]);
                 World.startingGold = Int32.Parse(info[6]);
                 World.bankGold = Int32.Parse(info[7]);
+                for (int i = 8; i < info.Length; i++) World.roderick.Add(info[i]);
             }
             Start();
         }
@@ -36,7 +34,12 @@ namespace ServerSocketApp
             Console.WriteLine("Marburgh Multiplayer 0.1 - Server");
             Console.WriteLine("IP adress - " + ip);
             Console.SetCursorPosition(100, 0);
-            if (File.Exists("World.txt")) Console.WriteLine("World: " + World.name);
+            if (File.Exists("World.txt"))
+            {
+                Console.WriteLine("World: " + World.name);
+                Console.SetCursorPosition(100, 1);
+                Console.WriteLine("Day: " + World.day);
+            }
             else Console.WriteLine("World: None");
             Console.SetCursorPosition(100, 27);
             Console.WriteLine("[!] Create World");
@@ -134,61 +137,72 @@ namespace ServerSocketApp
 
         private static void Maintenance()
         {
-            World.day++;
-            string rawInfo = File.ReadAllText("Players.txt");
-            string[] info = rawInfo.Split(",");
-            foreach(string s in info)
+            Console.Clear();
+            Console.WriteLine("Would you like to progress the world by one day?");
+            Console.CursorTop = 27;
+            Console.WriteLine("[1] Yes");
+            Console.WriteLine("[2] No");
+            string choice = Console.ReadKey(true).KeyChar.ToString().ToLower();
+            if(choice == "1")
             {
-                if(s != "")
+                World.day++;
+                string rawInfo = File.ReadAllText("Players.txt");
+                string[] info = rawInfo.Split(",");
+                foreach (string s in info)
                 {
-                    string rawInfo1 = File.ReadAllText(s + ".txt");
-                    string[] info1 = rawInfo1.Split(",");
-                    Player.p.name = info1[0];
-                    Player.p.level = Int32.Parse(info1[1]);
-                    Player.p.experience = Int32.Parse(info1[2]);
-                    Player.p.strength = Int32.Parse(info1[3]);
-                    Player.p.agility = Int32.Parse(info1[4]);
-                    Player.p.stamina = Int32.Parse(info1[5]);
-                    Player.p.hp = Int32.Parse(info1[6]);
-                    Player.p.maxHp = Int32.Parse(info1[7]);
-                    Player.p.fights = Int32.Parse(info1[8]);
-                    Player.p.points = Int32.Parse(info1[9]);
-                    foreach (Equipment e in Equipment.weaponList) if (e.name == info1[10]) Player.p.weapon = e.Copy();
-                    foreach (Equipment e in Equipment.armorList) if (e.name == info1[11]) Player.p.armor = e.Copy();
-                    Player.p.gold = Int32.Parse(info1[12]);
-                    Player.p.goldInBank = Int32.Parse(info1[13]);
-                    Player.p.house = (info1[14] == "true") ? true : false;
-                    Player.p.location = (info1[15] == "Tavern") ? Location.Tavern : (info1[15] == "House") ? Location.House : Location.Town;
-                    Player.p.password = info1[16];
-                    Player.p.drinks = Int32.Parse(info1[17]);
-                    Player.p.songs = Int32.Parse(info1[18]);
-                    Player.p.tavernBan = (info1[19] == "true") ? true : false;
-                    File.WriteAllText
-                   (
-                    s + ".txt",
-                    Player.p.name + "," +
-                    Player.p.level + "," +
-                    Player.p.experience + "," +
-                    Player.p.strength + "," +
-                    Player.p.agility + "," +
-                    Player.p.stamina + "," +
-                    Player.p.hp + "," +
-                    Player.p.maxHp + "," +
-                    World.fights + "," +
-                    Player.p.points + "," +
-                    Player.p.weapon.name + "," +
-                    Player.p.armor.name + "," +
-                    Player.p.gold + "," +
-                    Player.p.goldInBank + "," +
-                    Player.p.house + "," +
-                    Player.p.location + "," +
-                    Player.p.password + "," +
-                    World.drinks + "," +
-                    World.songs + "," +
-                    "False"
-                    );
-                }                
-            }
+                    if (s != "")
+                    {
+                        string rawInfo1 = File.ReadAllText(s + ".txt");
+                        string[] info1 = rawInfo1.Split(",");
+                        Player.p.name = info1[0];
+                        Player.p.level = Int32.Parse(info1[1]);
+                        Player.p.experience = Int32.Parse(info1[2]);
+                        Player.p.strength = Int32.Parse(info1[3]);
+                        Player.p.agility = Int32.Parse(info1[4]);
+                        Player.p.stamina = Int32.Parse(info1[5]);
+                        Player.p.hp = Int32.Parse(info1[6]);
+                        Player.p.maxHp = Int32.Parse(info1[7]);
+                        Player.p.fights = Int32.Parse(info1[8]);
+                        Player.p.points = Int32.Parse(info1[9]);
+                        foreach (Equipment e in Equipment.weaponList) if (e.name == info1[10]) Player.p.weapon = e.Copy();
+                        foreach (Equipment e in Equipment.armorList) if (e.name == info1[11]) Player.p.armor = e.Copy();
+                        Player.p.gold = Int32.Parse(info1[12]);
+                        Player.p.goldInBank = Int32.Parse(info1[13]);
+                        Player.p.house = (info1[14] == "true") ? true : false;
+                        Player.p.location = (info1[15] == "Tavern") ? Location.Tavern : (info1[15] == "House") ? Location.House : Location.Town;
+                        Player.p.password = info1[16];
+                        Player.p.drinks = Int32.Parse(info1[17]);
+                        Player.p.songs = Int32.Parse(info1[18]);
+                        Player.p.tavernBan = (info1[19] == "true") ? true : false;
+                        Player.p.townActions = Int32.Parse(info1[20]);
+                        File.WriteAllText
+                       (
+                        s + ".txt",
+                        Player.p.name + "," +
+                        Player.p.level + "," +
+                        Player.p.experience + "," +
+                        Player.p.strength + "," +
+                        Player.p.agility + "," +
+                        Player.p.stamina + "," +
+                        Player.p.hp + "," +
+                        Player.p.maxHp + "," +
+                        World.fights + "," +
+                        Player.p.points + "," +
+                        Player.p.weapon.name + "," +
+                        Player.p.armor.name + "," +
+                        Player.p.gold + "," +
+                        Player.p.goldInBank + "," +
+                        Player.p.house + "," +
+                        Player.p.location + "," +
+                        Player.p.password + "," +
+                        World.drinks + "," +
+                        World.songs + "," +
+                        "False" + "," +
+                        World.townActions
+                        );
+                    }
+                }
+            }            
             Start();
         }
 
