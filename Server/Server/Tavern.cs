@@ -168,6 +168,11 @@ public class Tavern
             Utilities.Sleep();
             Write.Line("'They became the best of freinds for years and years and years.'");
             Utilities.Sleep();
+            foreach(string s in World.roderick)
+            {
+                Write.Line(s);
+                Utilities.Sleep();
+            }
             Utilities.NewLine(3);
             Write.Line("You consider how much, if at all, this song has touched your heart");
             Utilities.Sleep();
@@ -198,13 +203,23 @@ public class Tavern
             {
                 Write.Line("You wipe the tears away from your eyes.");
                 Write.Line("You let Roderick know that that is the most beautiful song you've ever heard.");
-                Player.p.tavernBan = true;
+                Write.Line("Excited, Roderick tells you his song is great, but it's not finished");
+                Write.Line("Roderick asks if you have a line that you'd like to add?");
+                Utilities.NewLine(2);
+                Utilities.LongInput();
+                Utilities.Clear();
+                Write.Line("'Hmmm... "+ Utilities.input);
+                Write.Line("I like it");
+                World.roderick.Add(Utilities.input);
                 Utilities.Keypress();
                 Town.Go();
             }
             else
             {
-
+                Write.Line("Roderick finishes thinkly, looking at you");
+                Write.Line("You thank him for your song.");
+                Utilities.Keypress();
+                Town.Go();
             }
         }
         else if (Utilities.input == "0") Town.Go();
