@@ -13,6 +13,11 @@ public class Player:Creature
     public int songs;
     public bool tavernBan;
     public int townActions;
+    public int[] toLevel = new int[] 
+    {
+        0,20,50,100,150,270,400,550,700,900,
+        1100,1350,1600,1900,2450,3000,3600,4300,5000,6000
+    };
     public string password;
     public Location location;
     public Equipment weapon;

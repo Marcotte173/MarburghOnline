@@ -19,7 +19,8 @@ public class Town
         else Write.Line("[4] Tavern");
         Write.Line("[5] Bank");
         Write.Line(Color.MITIGATION, "[X] ","You don't have a house","");
-        Write.Line("[7] Level Master");
+        if(Player.p.experience >= Player.p.toLevel[Player.p.level]) Write.Line("[7] Level Master");
+        else Write.Line(Color.MITIGATION, "[X] ", "You need " + (Player.p.toLevel[Player.p.level] - Player.p.experience) + " experience to level up", "");
         Write.Line(Color.MITIGATION, "[X] ","Not Implemented","");
         Write.Line("[9] Character");
         Write.Line("[0] Quit");
@@ -30,7 +31,7 @@ public class Town
         else if (Utilities.input == "4" && Player.p.tavernBan == false) Tavern.Go();
         else if (Utilities.input == "5") Bank.Go();
         else if (Utilities.input == "6") Write.Line("Not Implemented yet");
-        else if (Utilities.input == "7") Level.Go();
+        else if (Utilities.input == "7" && Player.p.experience >= Player.p.toLevel[Player.p.level]) Level.Go();
         else if (Utilities.input == "9") Character.Display();
         else if (Utilities.input == "0")
         {
