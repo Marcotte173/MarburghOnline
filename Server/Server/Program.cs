@@ -12,38 +12,39 @@ namespace ServerSocketApp
         static int port = 1302;
         static void Main(string[] args)
         {
-            if (File.Exists("World.txt"))
-            {
-                string rawInfo = File.ReadAllText("World.txt");
-                string[] info = rawInfo.Split(",");
-                World.day = Int32.Parse(info[0]);
-                World.name = info[1];
-                World.fights = Int32.Parse(info[2]);
-                World.townActions = Int32.Parse(info[3]);
-                World.songs = Int32.Parse(info[4]);
-                World.drinks = Int32.Parse(info[5]);
-                World.startingGold = Int32.Parse(info[6]);
-                World.bankGold = Int32.Parse(info[7]);
-                for (int i = 8; i < info.Length; i++) World.roderick.Add(info[i]);
-            }
+            World.Load();
             Start();
         }
         public static void Start()
         {
             Console.Clear();
-            Console.WriteLine("Marburgh Multiplayer 0.1 - Server");
+            Console.WriteLine("Marburgh Multiplayer 0.3 - Server");
             Console.WriteLine("IP adress - " + ip);
-            Console.SetCursorPosition(100, 0);
+            Console.SetCursorPosition(80, 0);
             if (File.Exists("World.txt"))
             {
                 Console.WriteLine("World: " + World.name);
-                Console.SetCursorPosition(100, 1);
+                Console.SetCursorPosition(80, 1);
                 Console.WriteLine("Day: " + World.day);
+                Console.SetCursorPosition(80, 2);
+                Console.WriteLine("fights: " + World.fights);
+                Console.SetCursorPosition(80, 3);
+                Console.WriteLine("Town Actions: " + World.townActions);
+                Console.SetCursorPosition(80, 4);
+                Console.WriteLine("Songs: " + World.songs);
+                Console.SetCursorPosition(80, 5);
+                Console.WriteLine("Drinks: " + World.drinks);
+                Console.SetCursorPosition(80, 5);
+                Console.WriteLine("Starting Gold: " + World.startingGold);
+                Console.SetCursorPosition(80, 6);
+                Console.WriteLine("Bank Gold: " + World.bankGold);
+                Console.SetCursorPosition(80, 7);
+                Console.WriteLine("Interest rate: " + World.bankInterest);
             }
             else Console.WriteLine("World: None");
-            Console.SetCursorPosition(100, 27);
+            Console.SetCursorPosition(80, 27);
             Console.WriteLine("[!] Create World");
-            Console.SetCursorPosition(100, 28);
+            Console.SetCursorPosition(80, 28);
             Console.WriteLine("[*] Reset World");
             Console.SetCursorPosition(0, 21);
             if (File.Exists("World.txt"))
@@ -63,6 +64,8 @@ namespace ServerSocketApp
                 Console.WriteLine("[X] No World Exists");
             }
             Console.WriteLine("[6] Change IP");
+            if (File.Exists("World.txt")) Console.WriteLine("[7] Change World");
+            else Console.WriteLine("[X] No World Exists");
             if (File.Exists("World.txt")) Console.WriteLine("[9] Run Maintenance");
             else Console.WriteLine("[X] No World Exists");
             Console.WriteLine("[0] Quit Program");
@@ -105,16 +108,17 @@ namespace ServerSocketApp
                 ip = newIP;
                 Start();
             }
+            else if (choice == "7" && File.Exists("World.txt")) World.Change();
             else if (choice == "9" && File.Exists("World.txt")) Maintenance();
             else if (choice == "!") World.Create();
-            else if (choice == "*") CatastropheReset();
+            else if (choice == "*") RestWorld();
             else if (choice == "0") Environment.Exit(0);
             else Start();
         }
 
 
 
-        private static void CatastropheReset()
+        private static void RestWorld()
         {
             Console.Clear();
             Console.WriteLine("Are you sure?\nThis will erase ALL data");
@@ -144,66 +148,79 @@ namespace ServerSocketApp
             Console.WriteLine("[2] No");
             string choice = Console.ReadKey(true).KeyChar.ToString().ToLower();
             if(choice == "1")
-            {
-                World.day++;
-                string rawInfo = File.ReadAllText("Players.txt");
-                string[] info = rawInfo.Split(",");
-                foreach (string s in info)
-                {
-                    if (s != "")
-                    {
-                        string rawInfo1 = File.ReadAllText(s + ".txt");
-                        string[] info1 = rawInfo1.Split(",");
-                        Player.p.name = info1[0];
-                        Player.p.level = Int32.Parse(info1[1]);
-                        Player.p.experience = Int32.Parse(info1[2]);
-                        Player.p.strength = Int32.Parse(info1[3]);
-                        Player.p.agility = Int32.Parse(info1[4]);
-                        Player.p.stamina = Int32.Parse(info1[5]);
-                        Player.p.hp = Int32.Parse(info1[6]);
-                        Player.p.maxHp = Int32.Parse(info1[7]);
-                        Player.p.fights = Int32.Parse(info1[8]);
-                        Player.p.points = Int32.Parse(info1[9]);
-                        foreach (Equipment e in Equipment.weaponList) if (e.name == info1[10]) Player.p.weapon = e.Copy();
-                        foreach (Equipment e in Equipment.armorList) if (e.name == info1[11]) Player.p.armor = e.Copy();
-                        Player.p.gold = Int32.Parse(info1[12]);
-                        Player.p.goldInBank = Int32.Parse(info1[13]);
-                        Player.p.house = (info1[14] == "true") ? true : false;
-                        Player.p.location = (info1[15] == "Tavern") ? Location.Tavern : (info1[15] == "House") ? Location.House : Location.Town;
-                        Player.p.password = info1[16];
-                        Player.p.drinks = Int32.Parse(info1[17]);
-                        Player.p.songs = Int32.Parse(info1[18]);
-                        Player.p.tavernBan = (info1[19] == "true") ? true : false;
-                        Player.p.townActions = Int32.Parse(info1[20]);
-                        File.WriteAllText
-                       (
-                        s + ".txt",
-                        Player.p.name + "," +
-                        Player.p.level + "," +
-                        Player.p.experience + "," +
-                        Player.p.strength + "," +
-                        Player.p.agility + "," +
-                        Player.p.stamina + "," +
-                        Player.p.hp + "," +
-                        Player.p.maxHp + "," +
-                        World.fights + "," +
-                        Player.p.points + "," +
-                        Player.p.weapon.name + "," +
-                        Player.p.armor.name + "," +
-                        Player.p.gold + "," +
-                        Player.p.goldInBank + "," +
-                        Player.p.house + "," +
-                        Player.p.location + "," +
-                        Player.p.password + "," +
-                        World.drinks + "," +
-                        World.songs + "," +
-                        "False" + "," +
-                        World.townActions
-                        );
-                    }
-                }
+            {                
+                WorldMaintenance();
+                PlayerMaintenance();                
             }            
             Start();
+        }
+
+        private static void PlayerMaintenance()
+        {
+            string rawInfo = File.ReadAllText("Players.txt");
+            string[] info = rawInfo.Split(",");
+            foreach (string s in info)
+            {
+                if (s != "")
+                {
+                    string rawInfo1 = File.ReadAllText(s + ".txt");
+                    string[] info1 = rawInfo1.Split(",");
+                    Player.p.name = info1[0];
+                    Player.p.level = Int32.Parse(info1[1]);
+                    Player.p.experience = Int32.Parse(info1[2]);
+                    Player.p.strength = Int32.Parse(info1[3]);
+                    Player.p.agility = Int32.Parse(info1[4]);
+                    Player.p.stamina = Int32.Parse(info1[5]);
+                    Player.p.hp = Int32.Parse(info1[6]);
+                    Player.p.maxHp = Int32.Parse(info1[7]);
+                    Player.p.fights = Int32.Parse(info1[8]);
+                    Player.p.points = Int32.Parse(info1[9]);
+                    foreach (Equipment e in Equipment.weaponList) if (e.name == info1[10]) Player.p.weapon = e.Copy();
+                    foreach (Equipment e in Equipment.armorList) if (e.name == info1[11]) Player.p.armor = e.Copy();
+                    Player.p.gold = Int32.Parse(info1[12]);
+                    Player.p.goldInBank = Int32.Parse(info1[13]);
+                    Player.p.house = (info1[14] == "true") ? true : false;
+                    Player.p.location = (info1[15] == "Tavern") ? Location.Tavern : (info1[15] == "House") ? Location.House : Location.Town;
+                    Player.p.password = info1[16];
+                    Player.p.drinks = Int32.Parse(info1[17]);
+                    Player.p.songs = Int32.Parse(info1[18]);
+                    Player.p.tavernBan = (info1[19] == "true") ? true : false;
+                    Player.p.townActions = Int32.Parse(info1[20]);
+                    File.WriteAllText
+                   (
+                    s + ".txt",
+                    Player.p.name + "," +
+                    Player.p.level + "," +
+                    Player.p.experience + "," +
+                    Player.p.strength + "," +
+                    Player.p.agility + "," +
+                    Player.p.stamina + "," +
+                    Player.p.hp + "," +
+                    Player.p.maxHp + "," +
+                    World.fights + "," +
+                    Player.p.points + "," +
+                    Player.p.weapon.name + "," +
+                    Player.p.armor.name + "," +
+                    Player.p.gold + "," +
+                    Player.p.goldInBank + "," +
+                    Player.p.house + "," +
+                    Player.p.location + "," +
+                    Player.p.password + "," +
+                    World.drinks + "," +
+                    World.songs + "," +
+                    "False" + "," +
+                    World.townActions
+                    );
+                }
+            }
+        }
+
+        private static void WorldMaintenance()
+        {
+            World.day++;
+            World.bankGold += 2000;
+            World.bankInterest += 0.0001 * Utilities.RandomInt(-10, 11);
+            World.Save();
         }
 
         public static void LaunchGame()

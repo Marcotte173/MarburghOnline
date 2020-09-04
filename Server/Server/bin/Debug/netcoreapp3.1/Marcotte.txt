@@ -1,1 +1,0 @@
-Marcotte,1,0,4,4,3,20,20,15,0,Fist,None,200,0,False,Town,popopopo,3,2,False,3
