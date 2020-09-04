@@ -7,6 +7,7 @@ public class Data
 {
     public static void Save()
     {
+        World.Save();
         File.WriteAllText
                (
                 Player.p.name           + ".txt",
@@ -30,7 +31,11 @@ public class Data
                 Player.p.drinks + "," +
                 Player.p.songs + "," +
                 Player.p.tavernBan + "," +
-                Player.p.townActions
+                Player.p.townActions + "," +
+                Player.p.loan + "," +
+                Player.p.investment + "," +
+                Player.p.loanTerm + "," +
+                Player.p.investmentTerm
                 );
         if (File.Exists("Players.txt"))
         {
@@ -81,6 +86,10 @@ public class Data
             Player.p.songs = Int32.Parse(info[18]);
             Player.p.tavernBan = (info[19] =="True") ? true : false;
             Player.p.townActions = Int32.Parse(info[20]);
+            Player.p.loan = Int32.Parse(info[21]);
+            Player.p.investment = Int32.Parse(info[22]);
+            Player.p.loanTerm = Int32.Parse(info[23]);
+            Player.p.investmentTerm = Int32.Parse(info[24]);
             Write.Line("Please enter your password");
             Utilities.LongInput();
             if (Utilities.input == Player.p.password)

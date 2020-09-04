@@ -11,6 +11,10 @@ public class Player:Creature
     public int drinks;
     public bool active;
     public int songs;
+    public int loan;
+    public int loanTerm;
+    public int investment;
+    public int investmentTerm;
     public bool tavernBan;
     public int townActions;
     public int[] toLevel = new int[] 
