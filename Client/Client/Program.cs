@@ -83,6 +83,8 @@ namespace ClientSocketApp
                 else if (response == "cMitigation") Console.Write(Color.MITIGATION);
                 else if (response == "uSleep") Thread.Sleep(600);
                 else if (response == "...") Utilities.DotDotDot();
+                else if (response == "xy0") Console.SetCursorPosition(0, 0);
+                else if (response == "y0") Console.CursorTop = 0;
                 else if (response == "y1") Console.CursorTop = 1;
                 else if (response == "y2") Console.CursorTop = 2;
                 else if (response == "y3") Console.CursorTop = 3;
@@ -110,6 +112,24 @@ namespace ClientSocketApp
                 else if (response == "y25") Console.CursorTop = 25;
                 else if (response == "y26") Console.CursorTop = 26;
                 else if (response == "y27") Console.CursorTop = 27;
+                else if (response == "x20") Console.CursorLeft = 20;
+                else if (response == "x25") Console.CursorLeft = 25;
+                else if (response == "x30") Console.CursorLeft = 30;
+                else if (response == "x35") Console.CursorLeft = 35;
+                else if (response == "x40") Console.CursorLeft = 40;
+                else if (response == "x45") Console.CursorLeft = 45;
+                else if (response == "x50") Console.CursorLeft = 50;
+                else if (response == "x55") Console.CursorLeft = 55;
+                else if (response == "x60") Console.CursorLeft = 60;
+                else if (response == "x65") Console.CursorLeft = 65;
+                else if (response == "x70") Console.CursorLeft = 70;
+                else if (response == "x75") Console.CursorLeft = 75;
+                else if (response == "x80") Console.CursorLeft = 80;
+                else if (response == "x85") Console.CursorLeft = 85;
+                else if (response == "x90") Console.CursorLeft = 90;
+                else if (response == "x95") Console.CursorLeft = 95;
+                else if (response == "x100") Console.CursorLeft = 100;
+                else if (response == "x105") Console.CursorLeft = 105;
                 else if (response == "nl") Console.Write("\n");
                 else if (response == "k") Utilities.Keypress();
                 else if (response == "yn")

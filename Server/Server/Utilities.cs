@@ -35,6 +35,11 @@ public class Utilities
         sw.WriteLine("y"+v.ToString());
         sw.Flush();
     }
+    internal static void JumpX(int v)
+    {
+        sw.WriteLine("x" + v.ToString());
+        sw.Flush();
+    }
 
     public static void LongInput()
     {
@@ -124,4 +129,10 @@ public class Utilities
     }
 
     internal static bool CanAfford(int price) => Player.p.gold >= price;
+
+    internal static void ResetCursor()
+    {
+        sw.WriteLine("xy0");
+        sw.Flush();
+    }
 }

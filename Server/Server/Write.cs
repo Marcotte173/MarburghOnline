@@ -14,6 +14,19 @@ public class Write
         Utilities.sw.WriteLine("nl");
         Utilities.sw.Flush();
     }
+    public static void Line(int x, int y, string word)
+    {
+        Utilities.sw.WriteLine("x"+x);
+        Utilities.sw.Flush();
+        Utilities.sw.WriteLine("y" + y);
+        Utilities.sw.Flush();
+        Utilities.sw.WriteLine(word);
+        Utilities.sw.Flush();
+        Utilities.sw.WriteLine(Color.RESET);
+        Utilities.sw.Flush();
+        Utilities.sw.WriteLine("nl");
+        Utilities.sw.Flush();
+    }
     public static void Line(string color, string word)
     {
         Utilities.sw.WriteLine(color);

@@ -10,12 +10,8 @@ public class Bank
         Write.Line("You walk in to the Marbugh National Bank");
         Write.Line("Gwenson the hobbit motions to you from behind his till");
         Write.Line("Greetings! How can I help you today?");
-        Utilities.NewLine(2);
-        Write.Line("Gold on hand: " + Player.p.gold);
-        Write.Line("Gold in bank: " + Player.p.goldInBank);
-        Utilities.NewLine();
-        Write.Line("Interest Rate: " + World.bankInterest);
-        Utilities.JumpY(24);
+        DisplayBankInfo();       
+        Utilities.JumpY(23);
         Write.Line("[1] Deposit");
         Write.Line("[2] Withdraw");
         if(Player.p.investmentTerm <=0) Write.Line("[3] Invest");
@@ -25,17 +21,13 @@ public class Bank
         Write.Line("[0] Return to town");
         Write.Line("[*] This is a robbery!");
         Utilities.Input();
-        Console.Clear();
+        Utilities.Clear();
         if(Utilities.input == "1")
         {
+            DisplayBankInfo();
             Write.Line("Gwenson eyes you greedily");
             Write.Line("How much would you like to deposit?");
             Utilities.NewLine(2);
-            Write.Line("Gold on hand: " + Player.p.gold);
-            Write.Line("Gold in bank: " + Player.p.goldInBank);
-            Utilities.NewLine();
-            Write.Line("Interest Rate: " + World.bankInterest);
-            Utilities.NewLine();
             Utilities.LongInput();
             int deposit;
             if (Int32.TryParse(Utilities.input, out deposit))
@@ -60,13 +52,9 @@ public class Bank
         }
         else if (Utilities.input == "2")
         {
+            DisplayBankInfo();
             Write.Line("Gwenson looks disapointed");
             Write.Line("How much would you like to withdraw?");
-            Utilities.NewLine(2);
-            Write.Line("Gold on hand: " + Player.p.gold);
-            Write.Line("Gold in bank: " + Player.p.goldInBank);
-            Utilities.NewLine();
-            Write.Line("Interest Rate: " + World.bankInterest);
             Utilities.NewLine();
             Utilities.LongInput();
             int withdrawl;
@@ -91,14 +79,10 @@ public class Bank
         }
         else if (Utilities.input == "3"&& Player.p.investmentTerm <= 0)
         {
+            DisplayBankInfo();
             Write.Line("Gwenson looks at you excitedly");
             Write.Line($"An investment will pay out {World.bankInterest * 2} of your investment in 5 days");
             Write.Line("How much would you like to invest?");
-            Utilities.NewLine();
-            Write.Line("Gold on hand: " + Player.p.gold);
-            Write.Line("Gold in bank: " + Player.p.goldInBank);
-            Utilities.NewLine();
-            Write.Line("Interest Rate: " + World.bankInterest);
             Utilities.NewLine();
             Utilities.LongInput();
             int invest;
@@ -118,14 +102,10 @@ public class Bank
         else if (Utilities.input == "4" && Player.p.loanTerm <= 0)
         {
             int maxLoan = Player.p.level * 250;
+            DisplayBankInfo();
             Write.Line("Gwenson gives you a sly look");
             Write.Line($"We are prepared to loan you {maxLoan} gold.");
-            Write.Line("How much would you like to borrow?");
-            Utilities.NewLine();
-            Write.Line("Gold on hand: " + Player.p.gold);
-            Write.Line("Gold in bank: " + Player.p.goldInBank);
-            Utilities.NewLine();
-            Write.Line("Interest Rate: " + World.bankInterest);
+            Write.Line("How much would you like to borrow?");            
             Utilities.NewLine();
             Utilities.LongInput();
             int loan;
@@ -149,5 +129,15 @@ public class Bank
         }
         else if (Utilities.input == "0") Town.Go();
         Go();
+    }
+
+    private static void DisplayBankInfo()
+    {
+        Write.Line(90,0,"Gold in bank: " + Player.p.goldInBank);
+        Write.Line(90,1,"Gold on hand: " + Player.p.gold);
+        Write.Line(90, 2, "Investments: " + Player.p.investment);
+        Write.Line(90, 3, "Investment term: " + Player.p.investmentTerm);
+        Write.Line(90, 4, "Interest Rate: " + World.bankInterest);
+        Utilities.ResetCursor();
     }
 }
