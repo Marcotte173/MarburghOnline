@@ -16,8 +16,8 @@ public class Bank
         Write.Line("[2] Withdraw");
         if(Player.p.investmentTerm <=0) Write.Line("[3] Invest");
         else Write.Line(Color.MITIGATION, "[X] ", "You already have an investment", "");
-        if (Player.p.loanTerm <= 0) Write.Line("[3] Loan");
-        else Write.Line(Color.MITIGATION, "[X] ", "You already have an loan", "");
+        if (Player.p.loanTerm <= 0) Write.Line("[4] Loan");
+        else Write.Line(Color.MITIGATION, "[X] ", "You already have a loan", "");
         Write.Line("[0] Return to town");
         Write.Line("[*] This is a robbery!");
         Utilities.Input();
@@ -90,7 +90,11 @@ public class Bank
             {
                 if (Player.p.gold >= invest)
                 {
-
+                    Utilities.Clear();
+                    Write.Line("'Wonderful. Come back in 5 days to see how your investments have done'");
+                    Player.p.gold -= invest;
+                    Player.p.investment = invest;
+                    Player.p.investmentTerm = 5;
                 }
                 else
                 {
@@ -111,9 +115,13 @@ public class Bank
             int loan;
             if (Int32.TryParse(Utilities.input, out loan))
             {
-                if (Player.p.gold >= maxLoan)
+                if (loan >= maxLoan)
                 {
-
+                    Utilities.Clear();
+                    Write.Line("'Sounds good, this is due back in 5 days'");
+                    Player.p.gold += loan;
+                    Player.p.loan = loan;
+                    Player.p.loanTerm = 3;
                 }
                 else
                 {
@@ -135,9 +143,11 @@ public class Bank
     {
         Write.Line(90,0,"Gold in bank: " + Player.p.goldInBank);
         Write.Line(90,1,"Gold on hand: " + Player.p.gold);
-        Write.Line(90, 2, "Investments: " + Player.p.investment);
-        Write.Line(90, 3, "Investment term: " + Player.p.investmentTerm);
-        Write.Line(90, 4, "Interest Rate: " + World.bankInterest);
+        Write.Line(90, 3, "Interest Rate: " + World.bankInterest);
+        Write.Line(90, 5, "Investments: " + Player.p.investment);
+        Write.Line(90, 6, "Investment term: " + Player.p.investmentTerm);        
+        Write.Line(90, 8, "Loan: " + Player.p.loan);
+        Write.Line(90, 9, "Loan term: " + Player.p.loanTerm);
         Utilities.ResetCursor();
     }
 }

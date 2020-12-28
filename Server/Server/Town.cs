@@ -25,7 +25,11 @@ public class Town
         Write.Line("[9] Character");
         Write.Line("[0] Quit");
         Utilities.Input();
-        if (Utilities.input == "1") Write.Line("Not Implemented yet");
+        if (Utilities.input == "1")
+        {
+            Dungeon.dungeonLevel = Player.p.level;
+            Dungeon.Go();
+        }
         else if (Utilities.input == "2") weaponShop.Store();
         else if (Utilities.input == "3") armorShop.Store();
         else if (Utilities.input == "4" && Player.p.tavernBan == false) Tavern.Go();
